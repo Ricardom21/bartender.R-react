@@ -1,19 +1,15 @@
-
-import NavBar from './componentes/NavBar';
-import ItemListContainer from './componentes/ItemListContainer';
+import NavBar from './components/NavBar/NavBar';
+import ItemListContainer from './components/ItemListContainer/ItemListContainer';
+import Footer from './components/Footer/Footer';
 
 function App() {
 
   return (
     <>
-    <NavBar></NavBar>
+    <NavBar/>
     <ItemListContainer props="¡Hola, bienvenido a Bartender.R!" />
-   
-
+    <Footer />
     </>
-
-    
-
   );
 }
 
