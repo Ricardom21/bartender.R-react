@@ -5,7 +5,7 @@ const productos = [
         categoria: "bartender",
         precio: 2500,
         img: "img/coctelera.webp",
-        stock:4
+        stock:20
     },
     {
         id:2,
@@ -13,7 +13,7 @@ const productos = [
         categoria: "bartender",
         precio: 1500,
         img: "img/jigger.jpg",
-        stock:4
+        stock:30
     },
     {
         id:3,
@@ -21,7 +21,7 @@ const productos = [
         categoria: "bartender",
         precio: 3500,
         img: "img/cuchara.jpg",
-        stock:4
+        stock:50
     },
     {
         id:4,
@@ -29,7 +29,7 @@ const productos = [
         categoria: "bartender",
         precio: 500,
         img: "img/dosificador.jpg",
-        stock:4
+        stock:60
     },
     {
         id:5,
@@ -37,7 +37,7 @@ const productos = [
         categoria: "bartender",
         precio: 5500,
         img: "img/mortero.webp",
-        stock:4
+        stock:32
     },
     {
         id:6,
@@ -45,7 +45,7 @@ const productos = [
         categoria: "bartender",
         precio: 10000,
         img: "img/copas.jpg",
-         stock:4
+         stock:25
     },
     {
         id:7,
@@ -53,7 +53,7 @@ const productos = [
         categoria: "bartender",
         precio: 6500,
         img: "img/gomabarra.jpg",
-         stock:4
+         stock:10
     },
     {
         id:8,
@@ -61,7 +61,7 @@ const productos = [
         categoria: "bartender",
         precio: 7500,
         img: "img/escarchador.webp",
-        stock:4
+        stock:20
 
     },
 ]
