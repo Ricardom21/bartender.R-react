@@ -5,7 +5,7 @@ export const Item = (props) => {
   return (
     <div className="group border border-gray-300 rounded-lg flex flex-col">
       <div className="flex-shrink-0">
-        <img src={img} alt={nombre} className="object-cover w-full h-[300px]" />
+      <img src={img} alt={nombre} className="object-cover w-full h-[220px]" />
       </div>
 
       <div className="flex-grow p-6">

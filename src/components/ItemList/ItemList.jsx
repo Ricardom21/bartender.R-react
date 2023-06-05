@@ -6,7 +6,7 @@ export const ItemList = ({ products }) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       {products.map((product) => (
-        <div key={product.id} className="w-full sm:w-1/2 lg:w-1/4 p-2">
+        <div key={product.id} className="w-full  p-2">
           <Item {...product} />
         </div>
       ))}
