@@ -5,6 +5,7 @@ const productos = [
         categoria: "bartender",
         precio: 2500,
         img: "img/coctelera.webp",
+        descripcion: "una buena coctelera",
         stock:20
     },
     {
@@ -13,6 +14,7 @@ const productos = [
         categoria: "bartender",
         precio: 1500,
         img: "img/jigger.jpg",
+        descripcion: "una buena coctelera",
         stock:30
     },
     {
@@ -21,6 +23,7 @@ const productos = [
         categoria: "bartender",
         precio: 3500,
         img: "img/cuchara.jpg",
+        descripcion: "una buena coctelera",
         stock:50
     },
     {
@@ -29,6 +32,7 @@ const productos = [
         categoria: "bartender",
         precio: 500,
         img: "img/dosificador.jpg",
+        descripcion: "una buena coctelera",
         stock:60
     },
     {
@@ -37,6 +41,7 @@ const productos = [
         categoria: "bartender",
         precio: 5500,
         img: "img/mortero.webp",
+        descripcion: "una buena coctelera",
         stock:32
     },
     {
@@ -45,6 +50,7 @@ const productos = [
         categoria: "bartender",
         precio: 10000,
         img: "img/copas.jpg",
+        descripcion: "una buena coctelera",
          stock:25
     },
     {
@@ -53,6 +59,7 @@ const productos = [
         categoria: "bartender",
         precio: 6500,
         img: "img/gomabarra.jpg",
+        descripcion: "una buena coctelera",
          stock:10
     },
     {
@@ -61,12 +68,13 @@ const productos = [
         categoria: "bartender",
         precio: 7500,
         img: "img/escarchador.webp",
+        descripcion: "una buena coctelera",
         stock:20
 
     },
 ]
 
-const DELAY = 2000
+const DELAY = 200
 
 export const getProducts = () => {
     return new Promise((resolve) =>{
@@ -76,3 +84,10 @@ export const getProducts = () => {
     })
 }
 
+export const getProductsById = (productosId) => {
+    return new Promise((resolve) =>{
+        setTimeout(() => {
+            resolve(productos.find(prod => prod.id === productosId));
+        },DELAY)
+    })
+}
