@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Typography } from "@material-tailwind/react";
 
 const NavList = () => {
@@ -11,9 +11,9 @@ const NavList = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link to="/" className="flex items-center text-white">
+        <NavLink to="/" className="flex items-center text-white">
           Inicio
-        </Link>
+        </NavLink>
       </Typography>
 
       <Typography
@@ -22,9 +22,9 @@ const NavList = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link to="/category/bartender" className="flex items-center">
+        <NavLink to="/category/bartender" className="flex items-center">
           Bartender
-        </Link>
+        </NavLink>
       </Typography>
 
       {/* Agrega más categorías aquí si es necesario */}
@@ -35,9 +35,9 @@ const NavList = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link to="/contacto" className="flex items-center">
+        <NavLink to="/contacto" className="flex items-center">
           Contacto
-        </Link>
+        </NavLink>
       </Typography>
     </ul>
   );

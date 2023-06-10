@@ -2,7 +2,7 @@ const productos = [
     {
         id:1,
         nombre: "Coctelera",
-        categoria: "bartender",
+        categoria: "cocina",
         precio: 2500,
         img: "img/coctelera.webp",
         descripcion: "una buena coctelera",
@@ -11,7 +11,7 @@ const productos = [
     {
         id:2,
         nombre: "Jigger",
-        categoria: "bartender",
+        categoria: "cocina",
         precio: 1500,
         img: "img/jigger.jpg",
         descripcion: "una buena coctelera",
@@ -20,7 +20,7 @@ const productos = [
     {
         id:3,
         nombre: "Cuchara",
-        categoria: "bartender",
+        categoria: "cocina",
         precio: 3500,
         img: "img/cuchara.jpg",
         descripcion: "una buena coctelera",
@@ -29,7 +29,7 @@ const productos = [
     {
         id:4,
         nombre: "Dosificador",
-        categoria: "bartender",
+        categoria: "cocina",
         precio: 500,
         img: "img/dosificador.jpg",
         descripcion: "una buena coctelera",
@@ -38,7 +38,7 @@ const productos = [
     {
         id:5,
         nombre: "Mortero",
-        categoria: "bartender",
+        categoria: "cocina",
         precio: 5500,
         img: "img/mortero.webp",
         descripcion: "una buena coctelera",
@@ -47,7 +47,7 @@ const productos = [
     {
         id:6,
         nombre: "Copas",
-        categoria: "bartender",
+        categoria: "cocina",
         precio: 10000,
         img: "img/copas.jpg",
         descripcion: "una buena coctelera",

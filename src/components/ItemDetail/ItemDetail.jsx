@@ -1,7 +1,8 @@
 import {ItemCount} from "../ItemCount/ItemCount"
 
 
-export const ItemDetail = ({nombre, img, precio, categoria, descripcion, stock }) => {
+export const ItemDetail = (props) => {
+  const {id, nombre, img, precio, categoria, descripcion, stock } = props
   return (
 
     <div>
