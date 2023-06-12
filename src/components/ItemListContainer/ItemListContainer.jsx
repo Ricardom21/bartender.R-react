@@ -3,30 +3,25 @@ import { Typography } from "@material-tailwind/react";
 import { useParams } from "react-router-dom";
 import { getProducts, filtrarCategoria } from "../../Mocks/products";
 import { ItemList } from "../ItemList/ItemList";
-
 const ItemListContainer = ({ props }) => {
   const [productList, setProductList] = useState([]);
-  const { categoryId } = useParams();
-
+  const { categoryid } = useParams();
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const res = await getProducts();
-        if (categoryId) {
-          const filteredProducts = filtrarCategoria(categoryId, res);
-          setProductList(filteredProducts);
+        if (categoryid) {
+          const filteredProducts= res.filter((prod)=> prod.categoria === categoryid)
+          setProductList(filteredProducts)
         } else {
           setProductList(res);
         }
       } catch (error) {
         console.error("Error al obtener los productos:", error);
-        
       }
     };
-
     fetchProducts();
-  }, [categoryId]);
-
+  }, [categoryid]);
   return (
     <>
       <Typography variant="h2" className="texto smaller-font background-style">
@@ -36,6 +31,4 @@ const ItemListContainer = ({ props }) => {
     </>
   );
 };
-
 export default ItemListContainer;
-

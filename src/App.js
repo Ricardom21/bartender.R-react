@@ -9,7 +9,7 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Routes>
-      <Route path="/" element={<HeroHeader />} />
+      <Route path="/" element={<><HeroHeader /><ItemListContainer /></>} />
         <Route path="/category/:categoryid" element={<ItemListContainer />} />
         <Route path="/detalle/:productosId" element={<ItemDetailContainer />} />
       </Routes>
@@ -17,4 +17,3 @@ function App() {
     </BrowserRouter>
   );
 }
-export default App;
