@@ -1,55 +1,64 @@
+import imagen1 from '../img/coctelera.webp'
+import imagen2 from '../img/jigger.jpg'
+import imagen3 from '../img/cuchara.jpg'
+import imagen4 from '../img/dosificador.jpg'
+import imagen5 from '../img/mortero.webp'
+import imagen6 from '../img/copas.jpg'
+import imagen7 from '../img/gomabarra.jpg'
+import imagen8 from '../img/escarchador.webp'
+
 const productos = [
     {
         id:1,
         nombre: "Coctelera",
         categoria: "cocina",
         precio: 2500,
-        img: "img/coctelera.webp",
+        img: imagen1,
         descripcion: "una buena coctelera",
         stock:20
     },
     {
         id:2,
         nombre: "Jigger",
-        categoria: "cocina",
+        categoria: "bartender",
         precio: 1500,
-        img: "img/jigger.jpg",
+        img: imagen2,
         descripcion: "una buena coctelera",
         stock:30
     },
     {
         id:3,
         nombre: "Cuchara",
-        categoria: "cocina",
+        categoria: "bartender",
         precio: 3500,
-        img: "img/cuchara.jpg",
+        img: imagen3,
         descripcion: "una buena coctelera",
         stock:50
     },
     {
         id:4,
         nombre: "Dosificador",
-        categoria: "cocina",
+        categoria: "bartender",
         precio: 500,
-        img: "img/dosificador.jpg",
+        img: imagen4,
         descripcion: "una buena coctelera",
         stock:60
     },
     {
         id:5,
         nombre: "Mortero",
-        categoria: "cocina",
+        categoria: "bartender",
         precio: 5500,
-        img: "img/mortero.webp",
+        img: imagen5,
         descripcion: "una buena coctelera",
         stock:32
     },
     {
         id:6,
         nombre: "Copas",
-        categoria: "cocina",
+        categoria: "bartender",
         precio: 10000,
-        img: "img/copas.jpg",
+        img: imagen6,
         descripcion: "una buena coctelera",
          stock:25
     },
@@ -58,7 +67,7 @@ const productos = [
         nombre: "Esterilla",
         categoria: "bartender",
         precio: 6500,
-        img: "img/gomabarra.jpg",
+        img: imagen7,
         descripcion: "una buena coctelera",
          stock:10
     },
@@ -67,7 +76,7 @@ const productos = [
         nombre: "Escarchador",
         categoria: "bartender",
         precio: 7500,
-        img: "img/escarchador.webp",
+        img: imagen8,
         descripcion: "una buena coctelera",
         stock:20
 
@@ -87,7 +96,18 @@ export const getProducts = () => {
 export const getProductsById = (productosId) => {
     return new Promise((resolve) =>{
         setTimeout(() => {
-            resolve(productos.find(prod => prod.id === productosId));
+            resolve(productos.find(prod => prod.id == productosId));
         },DELAY)
     })
 }
+
+export const filtrarCategoria = (categoria) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const productosFiltrados = productos.filter(
+          (producto) => producto.categoria === categoria
+        );
+        resolve(productosFiltrados);
+      }, DELAY);
+    });
+  };

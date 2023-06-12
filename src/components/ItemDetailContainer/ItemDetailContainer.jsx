@@ -6,14 +6,18 @@ import { useParams } from 'react-router-dom';
 export const ItemDetailContainer = () => {
   const [product, setProduct] = useState (null)
   const {productosId } = useParams()
-  console.log(productosId)
     useEffect(()=>{
       getProductsById(productosId)
         .then((response)=>setProduct(response))
     },[productosId])
   return (
     <div>
+      {
+        product?
       <ItemDetail {...product}/>
+    :
+    <div> Loading</div>
+    }
     </div>
   )
 };

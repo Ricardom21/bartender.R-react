@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import {
   Navbar,
@@ -11,7 +11,7 @@ import CartWidget from "../CartWidget/CartWidget";
 
 import NavList from "../NavList/NavList";
 
-export default function NavBar() {
+const NavBar = () => {
   const [openNav, setOpenNav] = useState(false);
 
   useEffect(() => {
@@ -19,6 +19,12 @@ export default function NavBar() {
       "resize",
       () => window.innerWidth >= 960 && setOpenNav(false)
     );
+
+    return () => {
+      window.removeEventListener("resize", () =>
+        window.innerWidth >= 960 && setOpenNav(false)
+      );
+    };
   }, []);
 
   return (
@@ -77,14 +83,15 @@ export default function NavBar() {
             )}
           </IconButton>
         </div>
-
-        <MobileNav open={openNav}>
-          <div className="container mx-auto">
-            <NavList />
-
-          </div>
-        </MobileNav>
       </Navbar>
+
+      <MobileNav open={openNav}>
+        <div className="container mx-auto">
+          <NavList />
+        </div>
+      </MobileNav>
     </div>
   );
-}
+};
+
+export default NavBar;
