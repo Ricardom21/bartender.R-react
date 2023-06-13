@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Typography } from "@material-tailwind/react";
 import { useParams } from "react-router-dom";
-import { getProducts, filtrarCategoria } from "../../Mocks/products";
+import { getProducts} from "../../Mocks/products";
 import { ItemList } from "../ItemList/ItemList";
 const ItemListContainer = ({ props }) => {
   const [productList, setProductList] = useState([]);

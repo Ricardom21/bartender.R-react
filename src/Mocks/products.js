@@ -7,6 +7,7 @@ import imagen6 from '../img/copas.jpg'
 import imagen7 from '../img/gomabarra.jpg'
 import imagen8 from '../img/escarchador.webp'
 
+
 const productos = [
     {
         id:1,
@@ -81,6 +82,7 @@ const productos = [
         stock:20
 
     },
+    
 ]
 
 const DELAY = 200

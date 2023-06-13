@@ -20,7 +20,7 @@ const NavList = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <NavLink to="/category/bartender" className="flex items-center">
+        <NavLink to="/category/bartender" className="flex items-center  text-white">
           Bartender
         </NavLink>
       </Typography>
@@ -30,8 +30,8 @@ const NavList = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <NavLink to="/category/cocina" className="flex items-center">
-          Cocina
+        <NavLink to="/category/cocina" className="flex items-center  text-white">
+          cocina
         </NavLink>
       </Typography>
       <Typography
@@ -40,10 +40,12 @@ const NavList = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <NavLink to="/contacto" className="flex items-center">
+        <NavLink to="/contacto" className="flex items-center  text-white">
           Contacto
         </NavLink>
       </Typography>
     </ul>
   );
 };
+
+export default NavList
