@@ -1,7 +1,19 @@
 import { ItemCount } from "../ItemCount/ItemCount"
+import { useState } from "react"
+import { useContext } from "react"
+import { CartContext } from "../../context/ShoppingCartContext"
 
 export const ItemDetail = (props) => {
   const { id, nombre, img, precio, categoria, descripcion, stock } = props
+
+  const [quantityAdded, setQuantityAdded] = useState(0)
+  const { addItems } = useContext(CartContext)
+
+  const handleOnAdd = (quantity)=>{
+      setQuantityAdded(quantity)
+      const item = {id, nombre, precio, stock}
+      addItems(item, quantity)
+  }
   return (
     <div className="flex justify-center">
       <div className="group border border-gray-300 rounded-lg flex flex-col mx-4">
@@ -31,7 +43,7 @@ export const ItemDetail = (props) => {
           </p>
 
           <div className="flex justify-center mt-4">
-          <ItemCount initial={1} stock={stock} onAdd={(count)=> console.log(`Cantidad agregada:${count}`)}/>
+          {quantityAdded> 0 ? <button>Ir al Carrito</button> : <ItemCount initial={1} stock={stock} onAdd={handleOnAdd}/> }
           </div>
         </div>
       </div>
