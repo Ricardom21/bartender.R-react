@@ -2,10 +2,15 @@ import { ItemCount } from "../ItemCount/ItemCount"
 import { useState } from "react"
 import { useContext } from "react"
 import { CartContext } from "../../context/ShoppingCartContext"
+import {useNavigate} from "react-router-dom"
 
 export const ItemDetail = (props) => {
   const { id, nombre, img, precio, categoria, descripcion, stock } = props
 
+  const navigate = useNavigate()
+const irAlCarrito = () => {
+  navigate("/cart.jsx")
+}
   const [quantityAdded, setQuantityAdded] = useState(0)
   const { addItems } = useContext(CartContext)
 
@@ -13,6 +18,7 @@ export const ItemDetail = (props) => {
       setQuantityAdded(quantity)
       const item = {id, nombre, precio, stock}
       addItems(item, quantity)
+      
   }
   return (
     <div className="flex justify-center">
@@ -43,7 +49,7 @@ export const ItemDetail = (props) => {
           </p>
 
           <div className="flex justify-center mt-4">
-          {quantityAdded> 0 ? <button>Ir al Carrito</button> : <ItemCount initial={1} stock={stock} onAdd={handleOnAdd}/> }
+          {quantityAdded> 0 ? <button onClick={irAlCarrito}>Ir al Carrito</button> : <ItemCount initial={1} stock={stock} onAdd={handleOnAdd}/> }
           </div>
         </div>
       </div>
