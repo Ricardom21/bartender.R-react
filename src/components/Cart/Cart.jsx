@@ -10,7 +10,6 @@ const Cart = () => {
         <div key={item.item.id}>
           <h3>{item.item.name}</h3>
           <p>Quantity: {item.quantity}</p>
-          {/* Agrega más detalles del producto, como precio, imagen, etc. */}
         </div>
       ))}
     </div>
