@@ -2,7 +2,7 @@ import { Item } from '../Item/Item';
 import { Link } from 'react-router-dom';
 
 export const ItemList = ({ products }) => {
-  const itemsPerRow = 4;
+  
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
