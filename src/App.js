@@ -6,6 +6,7 @@ import { HeroHeader } from './components/heroHeader/heroHeader';
 import {ItemDetailContainer} from './components/ItemDetailContainer/ItemDetailContainer';
 import { CartProvider } from "./context/ShoppingCartContext";
 
+
 function App() {
   return (
     <BrowserRouter>

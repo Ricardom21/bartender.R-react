@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { ItemCount } from '../ItemCount/ItemCount';
 import { CartContext } from '../../context/ShoppingCartContext';
 
@@ -28,9 +29,11 @@ export const ItemDetail = ({ id, nombre, img, precio, categoria, descripcion, st
 
         <div className="flex justify-center mt-4">
           {quantityAdded > 0 ? (
-            <button className="px-4 py-2 font-bold text-white bg-blue-500 rounded-lg shadow-lg hover:bg-blue-700 transition duration-300 ease-in-out">
-              Ir al Carrito
-            </button>
+           <Link to="/cart">
+           <button className="px-4 py-2 font-bold text-white bg-blue-500 rounded-lg shadow-lg hover:bg-blue-700 transition duration-300 ease-in-out">
+             Ir al Carrito
+           </button>
+         </Link>
           ) : (
             <ItemCount initial={1} stock={stock} onAdd={handleOnAdd} />
           )}
