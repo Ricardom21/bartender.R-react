@@ -10,8 +10,8 @@ const Cart = () => {
         <h1>No hay productos en el carrito</h1>
       ) : (
         cartItems.map((item) => (
-          <div key={item.item.id}>
-            <h1>{item.item.nombre}</h1>
+          <div key={item.id}>
+            <h1>{item.nombre}</h1>
             <h2>{item.quantity}</h2>
           </div>
         ))
