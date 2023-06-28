@@ -10,6 +10,7 @@ import {
 import CartWidget from "../CartWidget/CartWidget";
 
 import NavList from "../NavList/NavList";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   const [openNav, setOpenNav] = useState(false);
@@ -43,7 +44,9 @@ const NavBar = () => {
             <NavList />
           </div>
 
-          <CartWidget />
+          <Link to="/cart">
+            <CartWidget />
+          </Link>
 
           <IconButton
             variant="text"
