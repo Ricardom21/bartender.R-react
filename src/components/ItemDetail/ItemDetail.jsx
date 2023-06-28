@@ -10,7 +10,7 @@ export const ItemDetail = ({ id, nombre, img, precio, categoria, descripcion, st
 
   const handleOnAdd = (quantity) => {
     setQuantityAdded(quantity);
-    const item = { id, nombre, precio, stock };
+    const item = { id, nombre, precio, stock,img };
     addItems(item, quantity);
     setIsCartClicked(true);
   };
