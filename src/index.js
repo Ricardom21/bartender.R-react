@@ -8,12 +8,12 @@ import {getFirestore} from "firebase/firestore";
 
 
 const firebaseConfig = {
-  apiKey: "TU_API_KEY",
-  authDomain: "TU_AUTH_DOMAIN",
-  projectId: "TU_PROJECT_ID",
-  storageBucket: "TU_STORAGE_BUCKET",
-  messagingSenderId: "TU_MESSAGING_SENDER_ID",
-  appId: "TU_APP_ID"
+  apiKey: "AIzaSyBJxeEW77stxShU6dEYrjV4ezRJEzRc6rc",
+  authDomain: "bartender-ricardo.firebaseapp.com",
+  projectId: "bartender-ricardo",
+  storageBucket: "bartender-ricardo.appspot.com",
+  messagingSenderId: "227167652611",
+  appId: "1:227167652611:web:536222d439fcb25a533736"
 };
 
 const app = initializeApp(firebaseConfig);

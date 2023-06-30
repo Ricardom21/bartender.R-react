@@ -1,27 +1,42 @@
 import React, { useState, useEffect } from "react";
 import { Typography } from "@material-tailwind/react";
 import { useParams } from "react-router-dom";
-import { getProducts} from "../../Mocks/products";
+import { getFirestore, collection, query, where, getDocs } from "firebase/firestore";
 import { ItemList } from "../ItemList/ItemList";
+
 const ItemListContainer = ({ props }) => {
   const [productList, setProductList] = useState([]);
   const { categoryid } = useParams();
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await getProducts();
+        const db = getFirestore();
+        const productsCollectionRef = collection(db, "products");
+
+        let productsQuery = query(productsCollectionRef);
+        
         if (categoryid) {
-          const filteredProducts= res.filter((prod)=> prod.categoria === categoryid)
-          setProductList(filteredProducts)
-        } else {
-          setProductList(res);
+          const categoryQuery = where("categoria", "==", categoryid);
+          productsQuery = query(productsQuery, categoryQuery);
         }
+
+        const querySnapshot = await getDocs(productsQuery);
+
+        const products = [];
+        querySnapshot.forEach((doc) => {
+          products.push(doc.data());
+        });
+
+        setProductList(products);
       } catch (error) {
         console.error("Error al obtener los productos:", error);
       }
     };
+
     fetchProducts();
   }, [categoryid]);
+
   return (
     <>
       <Typography variant="h2" className="texto smaller-font background-style">
@@ -31,4 +46,5 @@ const ItemListContainer = ({ props }) => {
     </>
   );
 };
+
 export default ItemListContainer;
