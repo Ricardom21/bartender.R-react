@@ -51,7 +51,7 @@ const productos = [
         categoria: "bartender",
         precio: 10000,
         img: "../img/copas.jpg",
-        descripcion: "Se trata de un pico vertedor para botellas construido en acero inoxidable y goma, se usa en coctelería pero también puede ser usada en casa para la botella de aceite por ejemplo (no sirve para vinagre)",
+        descripcion: "Copon de cristal marca Bohemia made in republica Checa ideal para vino de 580ml y de la mejor calidad, modelo Gastro, se entrega en su caja original",
          stock:25
     },
     {
@@ -121,7 +121,7 @@ const productos = [
     },
     {
         id:"14",
-        nombre: "Anis",
+        nombre: "Vodka Skyy",
         categoria: "bebidas",
         precio: 5500,
         img: "../img/vodka skyy.png",
