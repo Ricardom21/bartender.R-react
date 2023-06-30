@@ -12,7 +12,7 @@ const ItemListContainer = ({ props }) => {
     const fetchProducts = async () => {
       try {
         const db = getFirestore();
-        const productsCollectionRef = collection(db, "products");
+        const productsCollectionRef = collection(db, "productos");
 
         let productsQuery = query(productsCollectionRef);
         
