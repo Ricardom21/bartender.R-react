@@ -25,7 +25,8 @@ const ItemListContainer = ({ props }) => {
 
         const products = [];
         querySnapshot.forEach((doc) => {
-          products.push(doc.data());
+          const productWithId = {id: doc.id, ...doc.data()};
+          products.push( productWithId);
         });
 
         setProductList(products);
