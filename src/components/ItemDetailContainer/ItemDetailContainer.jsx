@@ -15,7 +15,7 @@ export const ItemDetailContainer = () => {
         const productDocSnapshot = await getDoc(productDocRef);
 
         if (productDocSnapshot.exists()) {
-          const productData = productDocSnapshot.data();
+          const productData = { id:productDocSnapshot.id, ...productDocSnapshot.data()};
           setProduct(productData);
         } else {
           console.log('El producto no existe.');
