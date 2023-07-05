@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { CartContext } from '../../context/ShoppingCartContext';
 import { collection, addDoc } from 'firebase/firestore';
@@ -8,14 +8,21 @@ import swal from 'sweetalert';
 const Checkout = ({ handleFinalizeOrder }) => {
   const { cartItems, clearCart } = useContext(CartContext);
   const { register, handleSubmit } = useForm();
+  const [nombre, setNombre] = useState('');
+  const [email, setEmail] = useState('');
+  const [telefono, setTelefono] = useState('');
 
-  const comprar = (data) => {
-    const pedido = {
-      cliente: data,
+  const comprar = () => {
+    const order = {
+      cliente: {
+        nombre,
+        email,
+        telefono
+      },
       productos: cartItems
     };
 
-    addDoc(collection(db, 'orders'), pedido)
+    addDoc(collection(db, 'orders'), order)
       .then((docRef) => {
         const orderId = docRef.id;
         swal('¡Orden realizada!', `ID de la orden: ${orderId}`, 'success');
@@ -27,11 +34,18 @@ const Checkout = ({ handleFinalizeOrder }) => {
       });
   };
 
+  const onSubmit = (data) => {
+    setNombre(data.nombre);
+    setEmail(data.email);
+    setTelefono(data.telefono);
+    comprar();
+  };
+
   return (
     <div className="flex items-center justify-center min-h-screen">
       <div className="w-full max-w-md">
         <h1 className="text-3xl font-bold text-center mb-4">Finalizar Compra</h1>
-        <form onSubmit={handleSubmit(comprar)} className="space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
             <label htmlFor="nombre" className="block font-bold mb-2">
               Ingresa tu nombre
@@ -83,5 +97,7 @@ const Checkout = ({ handleFinalizeOrder }) => {
 };
 
 export default Checkout;
+
+
 
 
