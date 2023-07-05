@@ -1,9 +1,12 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { CartContext } from '../../context/ShoppingCartContext';
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../../index.js';
+import swal from 'sweetalert';
 
-const Checkout = () => {
-  const { cartItems, clearCart, removeItem } = useContext(CartContext);
+const Checkout = ({ handleFinalizeOrder }) => {
+  const { cartItems, clearCart } = useContext(CartContext);
   const { register, handleSubmit } = useForm();
 
   const comprar = (data) => {
@@ -11,7 +14,17 @@ const Checkout = () => {
       cliente: data,
       productos: cartItems
     };
-    console.log(pedido);
+
+    addDoc(collection(db, 'orders'), pedido)
+      .then((docRef) => {
+        const orderId = docRef.id;
+        swal('¡Orden realizada!', `ID de la orden: ${orderId}`, 'success');
+        handleFinalizeOrder();
+        clearCart();
+      })
+      .catch((error) => {
+        console.error('Error al guardar la orden:', error);
+      });
   };
 
   return (
@@ -70,6 +83,5 @@ const Checkout = () => {
 };
 
 export default Checkout;
-
 
 

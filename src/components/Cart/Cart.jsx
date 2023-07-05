@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { CartContext } from "../../context/ShoppingCartContext";
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
+import Checkout from '../Checkout/Checkout';
 
 const Cart = () => {
   const { cartItems, clearCart, removeItem } = useContext(CartContext);
@@ -18,14 +19,6 @@ const Cart = () => {
 
   const handleRemoveItem = (itemId) => {
     removeItem(itemId);
-  };
-
-  const handleFinalizeOrder = () => {
-    swal("¡Gracias por tu compra!", {
-      icon: "success",
-      buttons: false,
-      timer: 2000
-    });
   };
 
   return (
@@ -59,13 +52,14 @@ const Cart = () => {
               >
                 Vaciar Carrito
               </button>
-              <button
-                className="inline-block py-2 px-4 mt-4 ml-4 font-bold text-white bg-blue-500 rounded-lg shadow-lg hover:bg-blue-700 transition duration-300 ease-in-out"
-                onClick={handleFinalizeOrder}
-              >
-                Finalizar Compra
-              </button>
             </div>
+            <Checkout handleFinalizeOrder={() => {
+              swal("¡Gracias por tu compra!", {
+                icon: "success",
+                buttons: false,
+                timer: 2000
+              });
+            }} />
           </div>
         )}
       </div>
