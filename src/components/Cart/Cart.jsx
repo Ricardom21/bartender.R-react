@@ -1,26 +1,19 @@
 import React, { useContext } from 'react';
 import { CartContext } from "../../context/ShoppingCartContext";
 import { Link } from 'react-router-dom';
-import swal from 'sweetalert';
 import Checkout from '../Checkout/Checkout';
-
 const Cart = () => {
   const { cartItems, clearCart, removeItem } = useContext(CartContext);
-
   const formatPrice = (price) => {
     return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(price);
   };
-
   const total = cartItems.reduce((acc, item) => acc + (item.item.precio * item.quantity), 0);
-
   const handleClearCart = () => {
     clearCart();
   };
-
   const handleRemoveItem = (itemId) => {
     removeItem(itemId);
   };
-
   return (
     <div className="flex flex-col min-h-screen">
       <div className="container mx-auto py-8 flex-grow">
@@ -53,13 +46,7 @@ const Cart = () => {
                 Vaciar Carrito
               </button>
             </div>
-            <Checkout handleFinalizeOrder={() => {
-              swal("¡Gracias por tu compra!", {
-                icon: "success",
-                buttons: false,
-                timer: 2000
-              });
-            }} />
+            <Checkout />
           </div>
         )}
       </div>
@@ -74,7 +61,6 @@ const Cart = () => {
     </div>
   );
 };
-
 export default Cart;
 
 

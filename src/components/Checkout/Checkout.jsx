@@ -1,17 +1,24 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { CartContext } from '../../context/ShoppingCartContext';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, doc } from 'firebase/firestore';
 import { db } from '../../index.js';
 import swal from 'sweetalert';
-
 const Checkout = ({ handleFinalizeOrder }) => {
   const { cartItems, clearCart } = useContext(CartContext);
   const { register, handleSubmit } = useForm();
   const [nombre, setNombre] = useState('');
   const [email, setEmail] = useState('');
   const [telefono, setTelefono] = useState('');
-
+  const handleNombreChange = (event) => {
+    setNombre(event.target.value);
+  };
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+  const handleTelefonoChange = (event) => {
+    setTelefono(event.target.value);
+  };
   const comprar = () => {
     const pedido = {
       cliente: {
@@ -21,11 +28,10 @@ const Checkout = ({ handleFinalizeOrder }) => {
       },
       productos: cartItems
     };
-
     addDoc(collection(db, 'orders'), pedido)
       .then((docRef) => {
         const orderId = docRef.id;
-        swal('¡Orden realizada!', `ID de la orden: ${orderId}`, 'success');
+        swal('¡Orden realizada! Gracias por su compra', `ID de la orden: ${orderId}`, 'success');
         handleFinalizeOrder();
         clearCart();
       })
@@ -33,23 +39,9 @@ const Checkout = ({ handleFinalizeOrder }) => {
         console.error('Error al guardar la orden:', error);
       });
   };
-
-  const handleNombreChange = (event) => {
-    setNombre(event.target.value);
-  };
-
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const handleTelefonoChange = (event) => {
-    setTelefono(event.target.value);
-  };
-
   const onSubmit = () => {
     comprar();
   };
-
   return (
     <div className="flex items-center justify-center min-h-screen">
       <div className="w-full max-w-md">
@@ -107,7 +99,6 @@ const Checkout = ({ handleFinalizeOrder }) => {
     </div>
   );
 };
-
 export default Checkout;
 
 
