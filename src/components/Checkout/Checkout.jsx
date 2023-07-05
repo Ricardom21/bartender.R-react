@@ -13,7 +13,7 @@ const Checkout = ({ handleFinalizeOrder }) => {
   const [telefono, setTelefono] = useState('');
 
   const comprar = () => {
-    const order = {
+    const pedido = {
       cliente: {
         nombre,
         email,
@@ -22,7 +22,7 @@ const Checkout = ({ handleFinalizeOrder }) => {
       productos: cartItems
     };
 
-    addDoc(collection(db, 'orders'), order)
+    addDoc(collection(db, 'orders'), pedido)
       .then((docRef) => {
         const orderId = docRef.id;
         swal('¡Orden realizada!', `ID de la orden: ${orderId}`, 'success');
@@ -34,10 +34,19 @@ const Checkout = ({ handleFinalizeOrder }) => {
       });
   };
 
-  const onSubmit = (data) => {
-    setNombre(data.nombre);
-    setEmail(data.email);
-    setTelefono(data.telefono);
+  const handleNombreChange = (event) => {
+    setNombre(event.target.value);
+  };
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const handleTelefonoChange = (event) => {
+    setTelefono(event.target.value);
+  };
+
+  const onSubmit = () => {
     comprar();
   };
 
@@ -55,7 +64,8 @@ const Checkout = ({ handleFinalizeOrder }) => {
               id="nombre"
               placeholder="Ingresa tu nombre"
               className="border border-gray-300 rounded px-4 py-2 w-full focus:outline-none focus:border-blue-500"
-              {...register('nombre')}
+              onChange={handleNombreChange}
+              value={nombre}
             />
           </div>
           <div>
@@ -67,7 +77,8 @@ const Checkout = ({ handleFinalizeOrder }) => {
               id="email"
               placeholder="Ingresa tu email"
               className="border border-gray-300 rounded px-4 py-2 w-full focus:outline-none focus:border-blue-500"
-              {...register('email')}
+              onChange={handleEmailChange}
+              value={email}
             />
           </div>
           <div>
@@ -79,7 +90,8 @@ const Checkout = ({ handleFinalizeOrder }) => {
               id="telefono"
               placeholder="Ingresa tu teléfono"
               className="border border-gray-300 rounded px-4 py-2 w-full focus:outline-none focus:border-blue-500"
-              {...register('telefono')}
+              onChange={handleTelefonoChange}
+              value={telefono}
             />
           </div>
           <div className="text-center">
@@ -97,6 +109,7 @@ const Checkout = ({ handleFinalizeOrder }) => {
 };
 
 export default Checkout;
+
 
 
 
