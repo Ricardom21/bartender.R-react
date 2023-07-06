@@ -1,13 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { CartContext } from '../../context/ShoppingCartContext';
-import { collection, addDoc, doc } from 'firebase/firestore';
+import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../../index.js';
 import swal from 'sweetalert';
 
 const Checkout = () => {
   const { cartItems, clearCart } = useContext(CartContext);
-  const { register, handleSubmit, errors } = useForm(); 
+  const {  handleSubmit } = useForm();
   const [nombre, setNombre] = useState('');
   const [email, setEmail] = useState('');
   const [telefono, setTelefono] = useState('');
@@ -54,7 +54,7 @@ const Checkout = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen">
-      <div className="w-full max-w-md">
+      <div className="w-full max-w-md bg-white rounded shadow-lg p-8">
         <h1 className="text-3xl font-bold text-center mb-4">Finalizar Compra</h1>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
@@ -65,50 +65,48 @@ const Checkout = () => {
               type="text"
               id="nombre"
               placeholder="Ingresa tu nombre"
-              className={`border border-gray-300 rounded px-4 py-2 w-full focus:outline-none focus:border-blue-500 ${errors.nombre ? 'border-red-500' : ''}`}
               onChange={handleNombreChange}
               value={nombre}
               name="nombre"
-              ref={register({ required: true })} 
+              required
+              className="border border-gray-300 px-3 py-2 rounded"
             />
-            {errors.nombre && <p className="text-red-500">Este campo es requerido</p>} 
           </div>
           <div>
             <label htmlFor="email" className="block font-bold mb-2">
               Ingresa tu email
             </label>
             <input
-              type="email" // Cambiar el tipo de "text" a "email"
+              type="email"
               id="email"
               placeholder="Ingresa tu email"
-              className={`border border-gray-300 rounded px-4 py-2 w-full focus:outline-none focus:border-blue-500 ${errors.email ? 'border-red-500' : ''}`}
               onChange={handleEmailChange}
               value={email}
               name="email"
-              ref={register({ required: true })} 
+              required
+              className="border border-gray-300 px-3 py-2 rounded"
             />
-            {errors.email && <p className="text-red-500">Este campo es requerido</p>} 
           </div>
           <div>
             <label htmlFor="telefono" className="block font-bold mb-2">
               Ingresa tu teléfono
             </label>
             <input
-              type="number" 
+              type="number"
               id="telefono"
               placeholder="Ingresa tu teléfono"
-              className={`border border-gray-300 rounded px-4 py-2 w-full focus:outline-none focus:border-blue-500 ${errors.telefono ? 'border-red-500' : ''}`}
               onChange={handleTelefonoChange}
               value={telefono}
               name="telefono"
-              ref={register({ required: true })} 
+              required
+              className="border border-gray-300 px-3 py-2 rounded"
+              style={{ '-moz-appearance': 'textfield', 'appearance': 'textfield' }}
             />
-            {errors.telefono && <p className="text-red-500">Este campo es requerido</p>} 
           </div>
           <div className="text-center">
             <button
               type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-blue-500 hover:bg-blue-700text-white font-bold py-2 px-4 rounded"
             >
               Comprar
             </button>
@@ -120,6 +118,7 @@ const Checkout = () => {
 };
 
 export default Checkout;
+
 
 
 
