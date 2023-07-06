@@ -4,21 +4,26 @@ import { CartContext } from '../../context/ShoppingCartContext';
 import { collection, addDoc, doc } from 'firebase/firestore';
 import { db } from '../../index.js';
 import swal from 'sweetalert';
-const Checkout = ({ handleFinalizeOrder }) => {
+
+const Checkout = () => {
   const { cartItems, clearCart } = useContext(CartContext);
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, errors } = useForm(); 
   const [nombre, setNombre] = useState('');
   const [email, setEmail] = useState('');
   const [telefono, setTelefono] = useState('');
+
   const handleNombreChange = (event) => {
     setNombre(event.target.value);
   };
+
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
+
   const handleTelefonoChange = (event) => {
     setTelefono(event.target.value);
   };
+
   const comprar = () => {
     const pedido = {
       cliente: {
@@ -28,20 +33,25 @@ const Checkout = ({ handleFinalizeOrder }) => {
       },
       productos: cartItems
     };
+
     addDoc(collection(db, 'orders'), pedido)
       .then((docRef) => {
         const orderId = docRef.id;
         swal('¡Orden realizada! Gracias por su compra', `ID de la orden: ${orderId}`, 'success');
-        handleFinalizeOrder();
         clearCart();
+        setNombre('');
+        setEmail('');
+        setTelefono('');
       })
       .catch((error) => {
         console.error('Error al guardar la orden:', error);
       });
   };
+
   const onSubmit = () => {
     comprar();
   };
+
   return (
     <div className="flex items-center justify-center min-h-screen">
       <div className="w-full max-w-md">
@@ -55,36 +65,45 @@ const Checkout = ({ handleFinalizeOrder }) => {
               type="text"
               id="nombre"
               placeholder="Ingresa tu nombre"
-              className="border border-gray-300 rounded px-4 py-2 w-full focus:outline-none focus:border-blue-500"
+              className={`border border-gray-300 rounded px-4 py-2 w-full focus:outline-none focus:border-blue-500 ${errors.nombre ? 'border-red-500' : ''}`}
               onChange={handleNombreChange}
               value={nombre}
+              name="nombre"
+              ref={register({ required: true })} 
             />
+            {errors.nombre && <p className="text-red-500">Este campo es requerido</p>} 
           </div>
           <div>
             <label htmlFor="email" className="block font-bold mb-2">
               Ingresa tu email
             </label>
             <input
-              type="text"
+              type="email" // Cambiar el tipo de "text" a "email"
               id="email"
               placeholder="Ingresa tu email"
-              className="border border-gray-300 rounded px-4 py-2 w-full focus:outline-none focus:border-blue-500"
+              className={`border border-gray-300 rounded px-4 py-2 w-full focus:outline-none focus:border-blue-500 ${errors.email ? 'border-red-500' : ''}`}
               onChange={handleEmailChange}
               value={email}
+              name="email"
+              ref={register({ required: true })} 
             />
+            {errors.email && <p className="text-red-500">Este campo es requerido</p>} 
           </div>
           <div>
             <label htmlFor="telefono" className="block font-bold mb-2">
               Ingresa tu teléfono
             </label>
             <input
-              type="text"
+              type="number" 
               id="telefono"
               placeholder="Ingresa tu teléfono"
-              className="border border-gray-300 rounded px-4 py-2 w-full focus:outline-none focus:border-blue-500"
+              className={`border border-gray-300 rounded px-4 py-2 w-full focus:outline-none focus:border-blue-500 ${errors.telefono ? 'border-red-500' : ''}`}
               onChange={handleTelefonoChange}
               value={telefono}
+              name="telefono"
+              ref={register({ required: true })} 
             />
+            {errors.telefono && <p className="text-red-500">Este campo es requerido</p>} 
           </div>
           <div className="text-center">
             <button
@@ -99,7 +118,9 @@ const Checkout = ({ handleFinalizeOrder }) => {
     </div>
   );
 };
+
 export default Checkout;
+
 
 
 
