@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import {
   Navbar,
-  MobileNav,
+  Collapse,
   Typography,
   IconButton,
 } from "@material-tailwind/react";
@@ -88,11 +88,11 @@ const NavBar = () => {
         </div>
       </Navbar>
 
-      <MobileNav open={openNav}>
+      <Collapse open={openNav}>
         <div className="container mx-auto">
           <NavList />
         </div>
-      </MobileNav>
+      </Collapse>
     </div>
   );
 };

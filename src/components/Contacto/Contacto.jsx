@@ -5,7 +5,7 @@ import { db } from '../../index.js';
 import swal from 'sweetalert';
 
 const Contacto = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
   const enviar = async (data) => {
     const contacto = {
@@ -15,10 +15,11 @@ const Contacto = () => {
     };
 
     try {
-      const docRef = await addDoc(collection(db, 'contactos'), contacto);
+      const docRef = await addDoc(collection(db, 'registro'), contacto);
       console.log('Documento guardado con ID:', docRef.id);
 
       swal('¡Suscripción exitosa!', 'Pronto te llegará información de nuestros productos.', 'success');
+      reset(); // Vaciar los campos del formulario
     } catch (error) {
       console.error('Error al guardar el contacto:', error);
       swal('Error', 'Hubo un error al guardar la suscripción. Por favor, inténtalo nuevamente.', 'error');
