@@ -1,4 +1,65 @@
-# Getting Started with Create React App
+# e-commerce
+## bartender.r
+
+_bartender.r Es una tienda de utencilios para bartenders y bebidas donde no solo podras conseguir todos nuestros productos._
+
+
+## Estructura de archivos
+
+* src/App.js - componente principal del sitio web
+* src/components - directorio para todos los componentes utilizados en el sitio web
+* src/contexts - directorio para el ShoppingCartContext utilizado en la funcionalidad del carrito de compras
+* src/index.js - punto de entrada de la aplicación
+* src/data - directorio para los datos JSON utilizados para poblar el catálogo de productos
+
+## caracteristicas de app representa toda mi aplicacion en la cual importamos 
+
+```import { BrowserRouter, Route, Routes } from "react-router-dom";
+import NavBar from './components/NavBar/NavBar';
+import ItemListContainer from './components/ItemListContainer/ItemListContainer';
+import Footer from './components/Footer/Footer';
+import { HeroHeader } from './components/heroHeader/heroHeader';
+import {ItemDetailContainer} from './components/ItemDetailContainer/ItemDetailContainer';
+import { CartProvider } from "./context/ShoppingCartContext";
+import Cart from './components/Cart/Cart';
+import Contacto from "./components/Contacto/Contacto";
+
+```
+
+Despues tenemos dos componentes Contenedores. El primero es el ItemListContainer tiene logica, y trae informacion de la Api, en este caso del Json y se la pasa al ItemList
+
+```
+import React, { useState, useEffect } from "react";
+import { Typography } from "@material-tailwind/react";
+import { useParams } from "react-router-dom";
+import { getFirestore, collection, query, where, getDocs } from "firebase/firestore";
+import { ItemList } from "../ItemList/ItemList";
+```
+
+El ItemList hace un Map para mapear todos los items existentes. En este importamos:
+```
+import { Item } from '../Item/Item';
+import { Link } from 'react-router-dom';
+```
+El segundo componente contenedor es el ItemDetailContainer.Como todo componente contenedor maneja logica y trae informacion de la Api para pasarselo a su hijo Itemdetail
+```
+import { useEffect, useState } from 'react';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../../index.js';
+import { useParams } from 'react-router-dom';
+import { ItemDetail } from '../ItemDetail/ItemDetail';
+```
+ItemDteail importa al ItemCount
+```
+import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { ItemCount } from '../ItemCount/ItemCount';
+import { CartContext } from '../../context/ShoppingCartContext';
+```
+
+ #### aca la instalacion de app
+
+### Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
